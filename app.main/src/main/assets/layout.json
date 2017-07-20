@@ -1,0 +1,383 @@
+{
+    "layouts": [
+        {
+            "name": "main",
+            "view": {
+                "type": "LinearLayout",
+                "layout_width": "match_parent",
+                "layout_height": "match_parent",
+                "orientation": "vertical",
+                "children": [
+                    {
+                        "type": "AppBarLayout",
+                        "id": "appbar",
+                        "layout_width": "match_parent",
+                        "layout_height": "56dp",
+                        "children": [
+                            {
+                                "type": "Toolbar",
+                                "id": "toolbar",
+                                "layout_width": "match_parent",
+                                "layout_height": "match_parent",
+                                "elevation": "4dp"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "RelativeLayout",
+                        "layout_width": "match_parent",
+                        "layout_height": "match_parent",
+                        "children": [
+                            {
+                                "type": "CardView",
+                                "id": "topCard",
+                                "layout_width": "match_parent",
+                                "layout_height": "120dp",
+                                "children": [
+                                    {
+                                        "type": "URLImageView",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "match_parent",
+                                        "layout_margin": "10dp",
+                                        "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "ScrollView",
+                                "layout_width": "match_parent",
+                                "layout_height": "match_parent",
+                                "layout_below": "topCard",
+                                "backgroundColor": "#ffffff",
+                                "layout_above": "bottomCard",
+                                "children": [
+                                    {
+                                        "type": "JustifiedTextView",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "textSize": "15dp",
+                                        "textColor": "#000000",
+                                        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "CardView",
+                                "id": "bottomCard",
+                                "layout_width": "match_parent",
+                                "layout_height": "wrap_content",
+                                "layout_alignParentBottom": "true",
+                                "children": [
+                                    {
+                                        "type": "Ripple",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "layout_margin": "10dp",
+                                        "children": [
+                                            {
+                                                "type": "AppCompatButton",
+                                                "textColor": "#ffffff",
+                                                "layout_width": "match_parent",
+                                                "layout_height": "wrap_content",
+                                                "text": "Login",
+                                                "onClick": {
+                                                    "event": [
+                                                        {
+                                                            "event": "com.shpt.lib.kernel.event.ActivityGoToEvent",
+                                                            "activity":"com.shpt.app.main.activity.Home",
+                                                            "view": "home",
+                                                            "data": {
+                                                                "formName": "eventRegister"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "btnBackgroundColor": "@color/colorPrimary"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "data": {},
+            "styles": {}
+        },
+        {
+            "name": "home",
+            "view": {
+                "type": "RelativeLayout",
+                "layout_width": "match_parent",
+                "layout_height": "match_parent",
+                "children": [
+                    {
+                        "type": "Toolbar",
+                        "id": "toolbar",
+                        "layout_width": "match_parent",
+                        "layout_height": "56dp",
+                        "backgroundColor": "@color/colorPrimary"
+                    },
+                    {
+                        "type": "DrawerLayout",
+                        "layout_width": "match_parent",
+                        "layout_height": "match_parent",
+                        "id": "drawer",
+                        "layout_below": "toolbar",
+                        "children": [
+                            {
+                                "type": "LinearLayout",
+                                "layout_width": "match_parent",
+                                "layout_height": "match_parent",
+                                "orientation": "vertical",
+                                "children": [
+                                    {
+                                        "type": "CardView",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "46dp",
+                                        "children": [
+                                            {
+                                                "type": "RelativeLayout",
+                                                "layout_width": "match_parent",
+                                                "layout_height": "match_parent",
+                                                "children": [
+                                                    {
+                                                        "type": "Icon",
+                                                        "id": "search",
+                                                        "icon": "cmd_magnify",
+                                                        "layout_width": "44dp",
+                                                        "layout_height": "match_parent",
+                                                        "iconColor": "#555555",
+                                                        "size": "10dp",
+                                                        "padding": "10dp",
+                                                        "layout_alignParentLeft": "true"
+                                                    },
+                                                    {
+                                                        "type": "CustomEditText",
+                                                        "layout_width": "match_parent",
+                                                        "layout_height": "match_parent",
+                                                        "hint": "Search...",
+                                                        "layout_toRightOf": "search",
+                                                        "layout_toLeftOf": "scan",
+                                                        "singleLine": "true"
+                                                    },
+                                                    {
+                                                        "type": "Icon",
+                                                        "id": "scan",
+                                                        "icon": "cmd_barcode",
+                                                        "iconColor": "#555555",
+                                                        "size": "10dp",
+                                                        "padding": "10dp",
+                                                        "layout_width": "44dp",
+                                                        "layout_height": "match_parent",
+                                                        "layout_alignParentRight": "true"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "NavigationView",
+                                "layout_width": "wrap_content",
+                                "layout_height": "match_parent",
+                                "id": "navigation_view"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "data": {},
+            "styles": {},
+            "config": {
+                "topMenu": "topmenu",
+                "sideBarMenu": "sidebar"
+            },
+            "menus": {
+                "topmenu": [
+                    {
+                        "title": "Notification",
+                        "id": "notification",
+                        "showaction": "always",
+                        "icon": "cmd_bell",
+                        "visibility": "true",
+                        "align": "",
+                        "badge": "4",
+                        "onClick": ""
+                    },
+                    {
+                        "title": "Wishlist",
+                        "id": "wishlist",
+                        "showaction": "always",
+                        "icon": "cmd_shopping",
+                        "visibility": "true",
+                        "align": "",
+                        "onClick": ""
+                    },
+                    {
+                        "title": "Shopping Cart",
+                        "id": "cart",
+                        "showaction": "always",
+                        "icon": "cmd_cart",
+                        "visibility": "true",
+                        "align": "",
+                        "onClick": ""
+                    }
+                ],
+                "sidebar": [
+                    {
+                        "title": "Your Orders",
+                        "id": "yourorders",
+                        "icon": "cmd_shopping",
+                        "visibility": "true"
+                    },
+                    {
+                        "title": "Your Wishlist",
+                        "id": "yourwishlist",
+                        "icon": "cmd_shopping",
+                        "visibility": "true"
+                    },
+                    {
+                        "title": "Account Settings",
+                        "id": "account",
+                        "icon": "cmd_account_circle",
+                        "visibility": "true"
+                    },
+                    {
+                        "title": "Notification Settings",
+                        "id": "account",
+                        "icon": "cmd_bell",
+                        "visibility": "true"
+                    },
+                    {
+                        "title": "Help",
+                        "id": "account",
+                        "icon": "cmd_help",
+                        "visibility": "true"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "notificationsettings",
+            "view": {
+                "type": "LinearLayout",
+                "layout_width": "match_parent",
+                "layout_height": "match_parent",
+                "orientation": "vertical",
+                "children": [
+                    {
+                        "type": "AppBarLayout",
+                        "id": "appbar",
+                        "layout_width": "match_parent",
+                        "layout_height": "56dp",
+                        "children": [
+                            {
+                                "type": "Toolbar",
+                                "id": "toolbar",
+                                "layout_width": "match_parent",
+                                "layout_height": "match_parent",
+                                "elevation": "4dp"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "LinearLayout",
+                        "layout_width": "match_parent",
+                        "layout_height": "match_parent",
+                        "orientation":"vertical",
+                        "children": [
+                            {
+                                "type": "MaterialPrefCategory",
+                                "layout_width": "match_parent",
+                                "layout_height": "wrap_content",
+                                "cardElevation": "0dp",
+                                "cardCornerRadius": "0dp",
+                                "cardMaxElevation": "0dp",
+                                "title": "Product Notification",
+                                "children": [
+                                    {
+                                        "type": "MaterialSwitch",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "key": "pnotifiy1|true",
+                                        "title": "Notifiy New Product",
+                                        "summary": "Notifiy me on New Products",
+                                        "icon": "cmd_bell_ring"
+                                    },
+                                    {
+                                        "type": "MaterialCheckbox",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "key": "magazinenotification|true",
+                                        "title": "Notify about Magazine",
+                                        "summary": "Notify me on Magazine Related News",
+                                        "icon": "cmd_book"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Divider",
+                                "layout_width": "match_parent",
+                                "layout_height": "1dp"
+                            },
+                            {
+                                "type": "MaterialPrefCategory",
+                                "layout_width": "match_parent",
+                                "layout_height": "wrap_content",
+                                "cardElevation": "0dp",
+                                "cardCornerRadius": "0dp",
+                                "cardMaxElevation": "0dp",
+                                "title": "Order Notification",
+                                "children": [
+                                    {
+                                        "type": "MaterialSwitch",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "key": "onotifiy1|true",
+                                        "title": "Notify My Order Status",
+                                        "summary": "Notifies All Related Activity about Your Orders",
+                                        "icon": "cmd_bell_ring"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Divider",
+                                "layout_width": "match_parent",
+                                "layout_height": "1dp"
+                            },
+                            {
+                                "type": "MaterialPrefCategory",
+                                "layout_width": "match_parent",
+                                "layout_height": "wrap_content",
+                                "cardElevation": "0dp",
+                                "cardCornerRadius": "0dp",
+                                "cardMaxElevation": "0dp",
+                                "title": "Newsletter",
+                                "children": [
+                                    {
+                                        "type": "MaterialSwitch",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "key": "newsletter|true",
+                                        "title": "Subscribe for Newsletter",
+                                        "icon": "cmd_newspaper"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "data": {},
+            "styles": {}
+        }
+    ],
+    "styles": {
+    },
+    "globalData": {
+        "baseUrl": "This is Base URL"
+    }
+}

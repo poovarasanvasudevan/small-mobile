@@ -1,0 +1,104 @@
+{
+    "layouts": [
+        {
+            "name": "main",
+            "view": {
+                "type": "LinearLayout",
+                "layout_width": "match_parent",
+                "layout_height": "match_parent",
+                "orientation": "vertical",
+                "children": [
+                    {
+                        "type": "AppBarLayout",
+                        "id": "appbar",
+                        "layout_width": "match_parent",
+                        "layout_height": "56dp",
+                        "children": [
+                            {
+                                "type": "Toolbar",
+                                "id": "toolbar",
+                                "layout_width": "match_parent",
+                                "layout_height": "match_parent",
+                                "elevation": "4dp"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "RelativeLayout",
+                        "layout_width": "match_parent",
+                        "layout_height": "match_parent",
+                        "children": [
+                            {
+                                "type": "CardView",
+                                "id": "topCard",
+                                "layout_width": "match_parent",
+                                "layout_height": "120dp",
+                                "children": [
+                                    {
+                                        "type": "URLImageView",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "match_parent",
+                                        "layout_margin": "10dp",
+                                        "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "ScrollView",
+                                "layout_width": "match_parent",
+                                "layout_height": "match_parent",
+                                "layout_below": "topCard",
+                                "layout_above": "bottomCard",
+                                "children": [
+                                    {
+                                        "type": "JustifiedTextView",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "textSize": "15dp",
+                                        "textColor": "#000000",
+                                        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "CardView",
+                                "id": "bottomCard",
+                                "layout_width": "match_parent",
+                                "layout_height": "wrap_content",
+                                "layout_alignParentBottom": "true",
+                                "children": [
+                                    {
+                                        "type": "Ripple",
+                                        "layout_width": "match_parent",
+                                        "layout_height": "wrap_content",
+                                        "rippleColor": "#999999",
+                                        "rippleBackground": "#000000",
+                                        "layout_margin": "10dp",
+                                        "children": [
+                                            {
+                                                "type": "AppCompatButton",
+                                                "textColor": "#ffffff",
+                                                "layout_width": "match_parent",
+                                                "layout_height": "wrap_content",
+                                                "text": "Login",
+                                                "btnBackgroundColor": "@color/colorPrimary"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "data": {},
+            "styles": {}
+        }
+    ],
+    "globalStyles": {
+    },
+    "globalData": {
+    }
+}
+
+

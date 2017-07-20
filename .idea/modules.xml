@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SHPT2.iml" filepath="$PROJECT_DIR$/SHPT2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app.kernel/app.kernel.iml" filepath="$PROJECT_DIR$/app.kernel/app.kernel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app.main/app.main.iml" filepath="$PROJECT_DIR$/app.main/app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blade/blade.iml" filepath="$PROJECT_DIR$/blade/blade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blade-appcompat/blade-appcompat.iml" filepath="$PROJECT_DIR$/blade-appcompat/blade-appcompat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blade-cardview/blade-cardview.iml" filepath="$PROJECT_DIR$/blade-cardview/blade-cardview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/blade-design/blade-design.iml" filepath="$PROJECT_DIR$/blade-design/blade-design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib.kernel/lib.kernel.iml" filepath="$PROJECT_DIR$/lib.kernel/lib.kernel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib.styles/lib.styles.iml" filepath="$PROJECT_DIR$/lib.styles/lib.styles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mpreferences/mpreferences.iml" filepath="$PROJECT_DIR$/mpreferences/mpreferences.iml" />
+    </modules>
+  </component>
+</project>

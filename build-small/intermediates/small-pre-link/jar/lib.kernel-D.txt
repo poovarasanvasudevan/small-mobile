@@ -1,0 +1,8 @@
+net.minidev:json-smart:2.2.1
+android.arch.persistence.room:common:1.0.0-alpha3
+com.jayway.jsonpath:json-path:2.2.0
+android.arch.lifecycle:common:1.0.0-alpha3
+org.slf4j:slf4j-api:1.7.16
+com.google.code.gson:gson:2.7
+net.minidev:accessors-smart:1.1
+com.github.bumptech.glide:glide:3.8.0

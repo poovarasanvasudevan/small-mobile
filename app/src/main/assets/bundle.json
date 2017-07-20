@@ -1,0 +1,21 @@
+{
+    "version": "1.0.0",
+    "bundles": [
+        {
+            "uri": "lib.kernel",
+            "pkg": "com.shpt.lib.kernel"
+        },
+        {
+            "uri": "lib.styles",
+            "pkg": "com.shpt.lib.styles"
+        },
+        {
+            "uri": "main",
+            "pkg": "com.shpt.app.main"
+        },
+        {
+            "uri": "kernel",
+            "pkg": "com.shpt.app.kernel"
+        }
+    ]
+}

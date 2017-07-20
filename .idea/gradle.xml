@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app.kernel" />
+            <option value="$PROJECT_DIR$/app.main" />
+            <option value="$PROJECT_DIR$/blade" />
+            <option value="$PROJECT_DIR$/blade-appcompat" />
+            <option value="$PROJECT_DIR$/blade-cardview" />
+            <option value="$PROJECT_DIR$/blade-design" />
+            <option value="$PROJECT_DIR$/lib.kernel" />
+            <option value="$PROJECT_DIR$/lib.styles" />
+            <option value="$PROJECT_DIR$/mpreferences" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

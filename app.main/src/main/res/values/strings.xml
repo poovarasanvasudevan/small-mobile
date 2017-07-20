@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">App.main</string>
+    <string name="transition_name_name">transition:NAME</string>
+    <string name="transition_name_circle">transition:CIRCLE</string>
+    <string name="transition_name_phone">transition:PHONE</string>
+</resources>

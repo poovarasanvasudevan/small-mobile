@@ -1,0 +1,1 @@
+include ':app', ':lib.kernel', ':app.main', ':lib.styles', ':app.kernel', ':blade', ':blade-appcompat', ':blade-cardview', ':blade-design', ':mpreferences'

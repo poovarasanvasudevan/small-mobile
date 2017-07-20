@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">lib.kernel</string>
+    <string name="openDrawer">Open</string>
+    <string name="closeDrawer">Open</string>
+</resources>
