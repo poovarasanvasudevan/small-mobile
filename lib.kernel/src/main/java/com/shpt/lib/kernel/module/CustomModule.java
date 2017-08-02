@@ -5,11 +5,13 @@ import com.poovarasan.blade.module.Module;
 import com.poovarasan.blade.parser.ViewParser;
 import com.poovarasan.blade.parser.custom.ViewGroupParser;
 import com.shpt.lib.kernel.parser.CustomEditTextParser;
+import com.shpt.lib.kernel.parser.CustomViewPagerParser;
 import com.shpt.lib.kernel.parser.IconParser;
 import com.shpt.lib.kernel.parser.JustifiedTextViewParser;
 import com.shpt.lib.kernel.parser.MPCategoryParser;
 import com.shpt.lib.kernel.parser.MPCheckboxParser;
 import com.shpt.lib.kernel.parser.MPSwitchParser;
+import com.shpt.lib.kernel.parser.ShimmerRecycularViewParser;
 import com.shpt.lib.kernel.parser.URLImageViewParser;
 
 /**
@@ -33,7 +35,8 @@ public class CustomModule implements Module {
         layoutBuilder.registerHandler("MaterialPrefCategory", new MPCategoryParser(viewGroupParser));
         layoutBuilder.registerHandler("MaterialCheckbox", new MPCheckboxParser(viewGroupParser));
         layoutBuilder.registerHandler("MaterialSwitch", new MPSwitchParser(viewGroupParser));
-
+        layoutBuilder.registerHandler("ShimmerRecycularView",new ShimmerRecycularViewParser(viewGroupParser));
+        layoutBuilder.registerHandler("CViewPager",new CustomViewPagerParser(viewGroupParser));
         //CommunityMaterial.Icon.cmd_library_books
     }
 }

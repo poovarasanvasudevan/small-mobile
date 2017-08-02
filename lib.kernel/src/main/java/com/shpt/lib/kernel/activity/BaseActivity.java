@@ -4,11 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,40 +30,23 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.jayway.jsonpath.JsonPath;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
-import com.poovarasan.blade.ImageLoaderCallback;
-import com.poovarasan.blade.builder.DataAndViewParsingLayoutBuilder;
-import com.poovarasan.blade.builder.DataParsingLayoutBuilder;
-import com.poovarasan.blade.builder.LayoutBuilderFactory;
-import com.poovarasan.blade.module.Module;
-import com.poovarasan.blade.toolbox.BitmapLoader;
+import com.poovarasan.blade.EventType;
 import com.poovarasan.blade.toolbox.Styles;
 import com.poovarasan.blade.view.BladeView;
-import com.poovarasan.bladeappcompat.AppCompatModule;
-import com.poovarasan.bladecardview.CardViewModule;
-import com.poovarasan.bladedesign.DesignModule;
 import com.shpt.lib.kernel.Base;
 import com.shpt.lib.kernel.R;
-import com.shpt.lib.kernel.event.EventHandler;
-import com.shpt.lib.kernel.formatter.SessionFormatter;
 import com.shpt.lib.kernel.helper.TransitionHelper;
-import com.shpt.lib.kernel.module.CustomModule;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.Future;
 
 import static android.R.attr.type;
 
@@ -86,7 +67,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+        Base.initBase(getInstance());
+        Base.getAllLayouts();
         super.onCreate(savedInstanceState);
+    }
+
+    public BaseActivity getInstance() {
+        return this;
     }
 
     @Override
@@ -116,11 +103,9 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onStart() {
         super.onStart();
-        Base.init(this);
     }
 
     public void render(ViewGroup viewGroup, JsonObject layout, JsonObject data, JsonObject styles) {
@@ -131,7 +116,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void render(ViewGroup viewGroup, String layoutName) {
-        String     completeJson = readJSONFromAsset();
+        String     completeJson = Base.readJSONFromAsset();
         JsonArray  full1        = JsonPath.read(completeJson, String.format("$.layouts[?(@.name=='%s')]", layoutName));
         JsonObject full         = full1.get(0).getAsJsonObject();
         JsonObject data         = full.getAsJsonObject("data");
@@ -212,7 +197,7 @@ public class BaseActivity extends AppCompatActivity {
                     String    sideBarMenuId = config.get("sideBarMenu").getAsString();
                     JsonArray sideBarMenu   = menu.get(sideBarMenuId).getAsJsonArray();
 
-                    constructSidebarMenu(navigationView.getMenu(), sideBarMenu);
+                    constructSidebarMenu(navigationView.getMenu(), sideBarMenu,drawerLayout);
                 }
             }
         }
@@ -251,7 +236,7 @@ public class BaseActivity extends AppCompatActivity {
                     menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
                 }
 
-                if(menuObjEx.has("badge") && menuObjEx.has("icon")) {
+                if (menuObjEx.has("badge") && menuObjEx.has("icon")) {
                     ActionItemBadge.update(this, menuItem, new IconicsDrawable(getApplicationContext(), menuObjEx.get("icon").getAsString()).actionBar().color(Color.WHITE), ActionItemBadge.BadgeStyles.GREEN, menuObjEx.get("badge").getAsString());
                 }
 
@@ -259,24 +244,36 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void constructSidebarMenu(Menu menu, JsonArray menuArray) {
+    public void constructSidebarMenu(Menu menu, JsonArray menuArray, final DrawerLayout drawerLayout) {
         Random r = new Random();
         menu.clear();
         for (JsonElement menuObj : menuArray) {
-            JsonObject menuObjEx = menuObj.getAsJsonObject();
+            final JsonObject menuObjEx = menuObj.getAsJsonObject();
             if (menuObjEx.has("children")) {
 
                 SubMenu   subMenu  = menu.addSubMenu(menuObjEx.has("title") ? menuObjEx.get("title").getAsString() : "Unknown");
                 JsonArray children = menuObjEx.get("children").getAsJsonArray();
                 for (JsonElement childrenMenu : children) {
-                    JsonObject childrenMenuEx = childrenMenu.getAsJsonObject();
-                    MenuItem   menuItem       = subMenu.add(childrenMenuEx.has("title") ? childrenMenuEx.get("title").getAsString() : "Unknown");
+                    final JsonObject childrenMenuEx = childrenMenu.getAsJsonObject();
+                    MenuItem         menuItem       = subMenu.add(childrenMenuEx.has("title") ? childrenMenuEx.get("title").getAsString() : "Unknown");
                     if (childrenMenuEx.has("visibility")) {
                         menuItem.setVisible(Boolean.parseBoolean(childrenMenuEx.get("visibility").getAsString()));
                     }
 
                     if (childrenMenuEx.has("icon")) {
                         menuItem.setIcon(new IconicsDrawable(getApplicationContext(), childrenMenuEx.get("icon").getAsString()).actionBar());
+                    }
+
+                    if (childrenMenuEx.has("onClick")) {
+                        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                Base.fireEvent(null, EventType.OnClick, childrenMenuEx.get("onClick").getAsJsonObject(), BaseActivity.this);
+                                drawerLayout.closeDrawers();
+                                return true;
+                            }
+                        });
+
                     }
 
                     //FontAwesome.Icon.faw_bell
@@ -293,6 +290,17 @@ public class BaseActivity extends AppCompatActivity {
                 if (menuObjEx.has("icon")) {
                     menuItem.setIcon(new IconicsDrawable(getApplicationContext(), menuObjEx.get("icon").getAsString()).actionBar());
                 }
+                if (menuObjEx.has("onClick")) {
+                    menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            Base.fireEvent(null, EventType.OnClick, menuObjEx.get("onClick").getAsJsonObject(), BaseActivity.this);
+                            drawerLayout.closeDrawers();
+                            return true;
+                        }
+                    });
+
+                }
 
             }
             // String title =
@@ -301,13 +309,15 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void buildLayout(ViewGroup viewGroup, JsonObject layout, JsonObject data, JsonObject styles) {
-        bladeView = getLayoutBuilder().build(viewGroup, layout, data, 0, new Gson().fromJson(styles, Styles.class));
+        bladeView = Base.getLayoutBuilder().build(viewGroup, layout, data, 0, new Gson().fromJson(styles, Styles.class));
+
         viewGroup.addView((View) bladeView);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         return true;
     }
 
@@ -330,6 +340,7 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         finishAfterTransition();
         super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
     }
 
     static final int TYPE_PROGRAMMATICALLY = 0;
@@ -354,26 +365,10 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected String readJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is     = getAssets().open("layout.json");
-            int         size   = is.available();
-            byte[]      buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        Log.i("Main Module", json);
-        return json;
-    }
-
     public View find(String id) {
         return findViewById(bladeView.getViewManager().getUniqueViewId(id));
     }
+
 
     public void setup() {
         Toolbar toolbar = (Toolbar) find("toolbar");
@@ -382,84 +377,10 @@ public class BaseActivity extends AppCompatActivity {
             toolbar.getContext().setTheme(R.style.ThemeOverlay_AppCompat_Dark_ActionBar);
             setSupportActionBar(toolbar);
         }
-    }
 
-
-    public void getAllLayouts() {
-        //set Layouts to Layouts
-
-        String json = null;
-        try {
-            InputStream is     = getAssets().open("alllayouts.json");
-            int         size   = is.available();
-            byte[]      buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-
+        ShimmerRecyclerView shimmerRecyclerView = (ShimmerRecyclerView) find("shimmer");
+        if (shimmerRecyclerView != null) {
+            shimmerRecyclerView.showShimmerAdapter();
         }
-        Log.i("Main All  Layouts", json);
-        Type type = new TypeToken<Map<String, JsonObject>>() {
-        }.getType();
-        layouts = new Gson().fromJson(json, type);
-
-    }
-
-    BitmapLoader bitmapLoader = new BitmapLoader() {
-        @Override
-        public Future<Bitmap> getBitmap(String imageUrl, View view) {
-            return null;
-        }
-
-        @Override
-        public void getBitmap(String imageUrl, final ImageLoaderCallback imageLoaderCallback, View view, JsonObject layout) {
-            Glide.with(getApplicationContext())
-                    .load(imageUrl)
-                    .asBitmap()
-                    .into(new SimpleTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                            imageLoaderCallback.onResponse(resource);
-                        }
-                    });
-        }
-    };
-
-    public DataParsingLayoutBuilder getLayoutBuilder() {
-
-        getAllLayouts();
-
-        DataAndViewParsingLayoutBuilder dataParsingLayoutBuilder = new LayoutBuilderFactory().getDataAndViewParsingLayoutBuilder(layouts);
-
-        //modules
-        Module appcompatModule = new AppCompatModule();
-        appcompatModule.register(dataParsingLayoutBuilder);
-
-        Module cardviewModule = new CardViewModule();
-        cardviewModule.register(dataParsingLayoutBuilder);
-
-        Module designModule = new DesignModule();
-        designModule.register(dataParsingLayoutBuilder);
-
-        Module customModule = new CustomModule();
-        customModule.register(dataParsingLayoutBuilder);
-
-        //base layout
-        dataParsingLayoutBuilder.setLayouts(layouts);
-
-        //listener
-        dataParsingLayoutBuilder.setListener(new EventHandler(this));
-
-        //formatter
-        dataParsingLayoutBuilder.registerFormatter(new SessionFormatter());
-
-      //  CommunityMaterial.Icon.cmd_magnify
-
-        //bitmap
-        dataParsingLayoutBuilder.setBitmapLoader(bitmapLoader);
-
-        return dataParsingLayoutBuilder;
     }
 }

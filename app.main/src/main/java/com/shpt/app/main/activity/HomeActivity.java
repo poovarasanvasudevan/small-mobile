@@ -1,6 +1,6 @@
 package com.shpt.app.main.activity;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import com.shpt.app.main.R;
 import com.shpt.lib.kernel.activity.BaseActivity;
 
+import net.wequick.small.Small;
+
 /**
  * Created by poovarasanv on 7/7/17.
  *
@@ -18,7 +20,7 @@ import com.shpt.lib.kernel.activity.BaseActivity;
  * @on 7/7/17 at 10:03 AM
  */
 
-public class Home extends BaseActivity {
+public class HomeActivity extends BaseActivity {
 
     private RelativeLayout baseView;
 
@@ -29,13 +31,17 @@ public class Home extends BaseActivity {
         setContentView(R.layout.activity_main);
         initView();
 
-        Intent intent = getIntent();
+        Uri uri = Small.getUri(this);
+        if (uri != null) {
+            String from = uri.getQueryParameter("from");
+            String view = uri.getQueryParameter("view");
 
-        String view = intent.getExtras().getString("view", "home");
-        super.render(baseView, view);
+            super.render(baseView, view);
+            // Do stuff by `from'
+        }
 
-
-        //CommunityMaterial.Icon.cmd_bell_ring
+        //CommunityMaterial.Icon.cmd_grid
+        //CommunityMaterial.Icon.cmd_access_point
 
     }
 

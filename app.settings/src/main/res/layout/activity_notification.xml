@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/baseView1">
+
+    <android.support.design.widget.AppBarLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="wrap_content"
+            android:id="@+id/appbar"
+            android:layout_width="match_parent">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/appbar"
+            android:orientation="vertical"
+            android:id="@+id/notificationSettingBar"
+            android:layout_height="match_parent">
+
+        <com.poovarasan.mpreferences.MaterialPreferenceCategory
+                android:layout_width="match_parent"
+                app:mpc_title="Product Notification"
+                app:mpc_title_color="?colorPrimary"
+                app:cardElevation="0dp"
+                app:cardMaxElevation="0dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content">
+
+            <com.poovarasan.mpreferences.MaterialSwitchPreference
+                    android:layout_width="match_parent"
+                    app:mp_key="product_new_settings"
+                    app:mp_default_value="true"
+                    app:mp_title="Show New Product Notification"
+                    app:mp_summary="This will Notifies You when new products are updated"
+                    android:layout_height="wrap_content"/>
+
+
+            <com.poovarasan.mpreferences.MaterialSwitchPreference
+                    android:layout_width="match_parent"
+                    app:mp_key="product_discount_settings"
+                    app:mp_default_value="true"
+                    app:mp_title="Notifiy Discounts"
+                    app:mp_summary="This will Notifies You when Product has been discounted"
+                    android:layout_height="wrap_content"/>
+        </com.poovarasan.mpreferences.MaterialPreferenceCategory>
+    </LinearLayout>
+
+</RelativeLayout>

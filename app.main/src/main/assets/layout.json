@@ -83,11 +83,11 @@
                                                 "onClick": {
                                                     "event": [
                                                         {
-                                                            "event": "com.shpt.lib.kernel.event.ActivityGoToEvent",
-                                                            "activity":"com.shpt.app.main.activity.Home",
-                                                            "view": "home",
-                                                            "data": {
-                                                                "formName": "eventRegister"
+                                                            "event": "com.shpt.lib.kernel.event.SmallGoToEvent",
+                                                            "activity": "main/home",
+                                                            "extras": {
+                                                                "from": "MainActivity",
+                                                                "view": "home"
                                                             }
                                                         }
                                                     ]
@@ -176,6 +176,121 @@
                                                 ]
                                             }
                                         ]
+                                    },
+                                    {
+                                        "type": "CViewPager",
+                                        "layout_height": "125dp",
+                                        "layout_width": "match_parent",
+                                        "layoutData": [
+                                            {
+                                                "view": {
+                                                    "type": "CardView",
+                                                    "layout_width": "match_parent",
+                                                    "layout_height": "120dp",
+                                                    "children": [
+                                                        {
+                                                            "type": "URLImageView",
+                                                            "layout_width": "match_parent",
+                                                            "layout_height": "match_parent",
+                                                            "layout_margin": "10dp",
+                                                            "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                                        }
+                                                    ]
+                                                },
+                                                "data": {},
+                                                "styles": {}
+                                            },
+                                            {
+                                                "view": {
+                                                    "type": "CardView",
+                                                    "layout_width": "match_parent",
+                                                    "layout_height": "120dp",
+                                                    "children": [
+                                                        {
+                                                            "type": "URLImageView",
+                                                            "layout_width": "match_parent",
+                                                            "layout_height": "match_parent",
+                                                            "layout_margin": "10dp",
+                                                            "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                                        }
+                                                    ]
+                                                },
+                                                "data": {},
+                                                "styles": {}
+                                            },
+                                            {
+                                                "view": {
+                                                    "type": "CardView",
+                                                    "layout_width": "match_parent",
+                                                    "layout_height": "120dp",
+                                                    "children": [
+                                                        {
+                                                            "type": "URLImageView",
+                                                            "layout_width": "match_parent",
+                                                            "layout_height": "match_parent",
+                                                            "layout_margin": "10dp",
+                                                            "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                                        }
+                                                    ]
+                                                },
+                                                "data": {},
+                                                "styles": {}
+                                            },
+                                            {
+                                                "view": {
+                                                    "type": "CardView",
+                                                    "layout_width": "match_parent",
+                                                    "layout_height": "120dp",
+                                                    "children": [
+                                                        {
+                                                            "type": "URLImageView",
+                                                            "layout_width": "match_parent",
+                                                            "layout_height": "match_parent",
+                                                            "layout_margin": "10dp",
+                                                            "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                                        }
+                                                    ]
+                                                },
+                                                "data": {},
+                                                "styles": {}
+                                            },
+                                            {
+                                                "view": {
+                                                    "type": "CardView",
+                                                    "layout_width": "match_parent",
+                                                    "layout_height": "120dp",
+                                                    "children": [
+                                                        {
+                                                            "type": "URLImageView",
+                                                            "layout_width": "match_parent",
+                                                            "layout_height": "match_parent",
+                                                            "layout_margin": "10dp",
+                                                            "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                                        }
+                                                    ]
+                                                },
+                                                "data": {},
+                                                "styles": {}
+                                            },
+                                            {
+                                                "view": {
+                                                    "type": "CardView",
+                                                    "layout_width": "match_parent",
+                                                    "layout_height": "120dp",
+                                                    "children": [
+                                                        {
+                                                            "type": "URLImageView",
+                                                            "layout_width": "match_parent",
+                                                            "layout_height": "match_parent",
+                                                            "layout_margin": "10dp",
+                                                            "url": "http://en.heartfulness.org/wp-content/themes/zerif-lite-child-en/images/logo.png"
+                                                        }
+                                                    ]
+                                                },
+                                                "data": {},
+                                                "styles": {}
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -249,7 +364,35 @@
                         "title": "Notification Settings",
                         "id": "account",
                         "icon": "cmd_bell",
-                        "visibility": "true"
+                        "visibility": "true",
+                        "onClick": {
+                            "event": [
+                                {
+                                    "event": "com.shpt.lib.kernel.event.SmallGoToEvent",
+                                    "activity": "settings/notification",
+                                    "extras": {
+                                        "from": "HomeActivity"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "title": "App Settings",
+                        "id": "app",
+                        "icon": "cmd_grid",
+                        "visibility": "true",
+                        "onClick": {
+                            "event": [
+                                {
+                                    "event": "com.shpt.lib.kernel.event.SmallGoToEvent",
+                                    "activity": "settings/appsetting",
+                                    "extras": {
+                                        "from": "HomeActivity"
+                                    }
+                                }
+                            ]
+                        }
                     },
                     {
                         "title": "Help",
@@ -287,7 +430,7 @@
                         "type": "LinearLayout",
                         "layout_width": "match_parent",
                         "layout_height": "match_parent",
-                        "orientation":"vertical",
+                        "orientation": "vertical",
                         "children": [
                             {
                                 "type": "MaterialPrefCategory",

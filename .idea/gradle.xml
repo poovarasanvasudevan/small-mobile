@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app.kernel" />
             <option value="$PROJECT_DIR$/app.main" />
+            <option value="$PROJECT_DIR$/app.settings" />
             <option value="$PROJECT_DIR$/blade" />
             <option value="$PROJECT_DIR$/blade-appcompat" />
             <option value="$PROJECT_DIR$/blade-cardview" />

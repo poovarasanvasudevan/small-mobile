@@ -11,7 +11,20 @@
         },
         {
             "uri": "main",
-            "pkg": "com.shpt.app.main"
+            "pkg": "com.shpt.app.main",
+            "rules":{
+                "home":".activity.Home"
+            }
+        },
+        {
+            "uri": "settings",
+            "pkg": "com.poovarasan.app.settings",
+            "rules":{
+                "notification":".activity.Notification",
+                "appsetting":".activity.AppSetting",
+                "module":".activity.Module"
+                    
+            }
         },
         {
             "uri": "kernel",
