@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
+import com.koushikdutta.ion.Ion;
 import com.poovarasan.blade.parser.Attributes;
 import com.poovarasan.blade.parser.Parser;
 import com.poovarasan.blade.parser.WrappableParser;
@@ -40,12 +40,11 @@ public class URLImageViewParser extends WrappableParser<URLImageView> {
             @Override
             public void handle(String attributeKey, String attributeValue, URLImageView view) {
 
-                Glide
-                        .with(view.getContext())
-                        .load(attributeValue)
+                Ion.with(view)
                         .placeholder(R.drawable.progress_drawable)
-                        .crossFade()
-                        .into(view);
+                        .error(R.drawable.progress_drawable)
+                        .load(attributeValue);
+
             }
         });
     }

@@ -17,9 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.poovarasan.blade.EventType;
 import com.poovarasan.blade.ImageLoaderCallback;
@@ -131,13 +130,16 @@ public class Base {
 
             @Override
             public void getBitmap(String imageUrl, final ImageLoaderCallback imageLoaderCallback, View view, JsonObject layout) {
-                Glide.with(thiscontext)
+
+
+                Ion.with(thiscontext)
                         .load(imageUrl)
                         .asBitmap()
-                        .into(new SimpleTarget<Bitmap>() {
+                        .setCallback(new FutureCallback<Bitmap>() {
+
                             @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                imageLoaderCallback.onResponse(resource);
+                            public void onCompleted(Exception e, Bitmap result) {
+                                imageLoaderCallback.onResponse(result);
                             }
                         });
             }

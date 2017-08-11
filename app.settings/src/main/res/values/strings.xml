@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">App.Settings</string>
+    <string name="checking_for_updates">Checking for updates...</string>
 </resources>

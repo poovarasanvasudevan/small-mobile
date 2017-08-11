@@ -33,6 +33,7 @@ import android.view.ViewGroup;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.jayway.jsonpath.JsonPath;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
+import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
@@ -42,6 +43,9 @@ import com.poovarasan.blade.view.BladeView;
 import com.shpt.lib.kernel.Base;
 import com.shpt.lib.kernel.R;
 import com.shpt.lib.kernel.helper.TransitionHelper;
+import com.shpt.lib.kernel.icon.LineBasic;
+import com.shpt.lib.kernel.icon.LineEcom;
+import com.shpt.lib.kernel.icon.SimpleLineIcon;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -105,6 +109,12 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        Iconics.registerFont(new SimpleLineIcon());
+        Iconics.registerFont(new LineBasic());
+        Iconics.registerFont(new LineEcom());
+
+        //CommunityMaterial.Icon.cmd_barcode_scan
+       // SimpleLineIcon.Icon.sli_paper_clip
         super.onStart();
     }
 
@@ -140,7 +150,7 @@ public class BaseActivity extends AppCompatActivity {
     public void setupSideBar(JsonObject layoutData) {
         final DrawerLayout drawerLayout   = (DrawerLayout) find("drawer");
         NavigationView     navigationView = (NavigationView) find("navigation_view");
-        Toolbar            toolbar        = (Toolbar) find("toolbar");
+        final Toolbar      toolbar        = (Toolbar) find("toolbar");
         if (drawerLayout != null && navigationView != null) {
 
             DrawerLayout.LayoutParams lp = new DrawerLayout.LayoutParams(
@@ -148,7 +158,6 @@ public class BaseActivity extends AppCompatActivity {
 
             lp.gravity = Gravity.START;
             navigationView.setLayoutParams(lp);
-
 
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -159,20 +168,38 @@ public class BaseActivity extends AppCompatActivity {
             });
 
 
+
             ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer) {
 
                 @Override
                 public void onDrawerClosed(View drawerView) {
+                    toolbar.setNavigationIcon(Base.getIcon("sli_menu",20,Color.WHITE));
                     // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
                     super.onDrawerClosed(drawerView);
                 }
 
                 @Override
                 public void onDrawerOpened(View drawerView) {
+                    toolbar.setNavigationIcon(Base.getIcon("sli_arrow_left",20,Color.WHITE));
                     // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
                     super.onDrawerOpened(drawerView);
                 }
             };
+            actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+            toolbar.setNavigationIcon(Base.getIcon("sli_menu",20,Color.WHITE));
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(drawerLayout.isDrawerOpen(Gravity.LEFT) )  {
+                        drawerLayout.closeDrawers();
+                        toolbar.setNavigationIcon(Base.getIcon("sli_menu",20,Color.WHITE));
+                    } else {
+                        toolbar.setNavigationIcon(Base.getIcon("sli_arrow_left",20,Color.WHITE));
+                        drawerLayout.openDrawer(Gravity.LEFT);
+                    }
+                }
+            });
+            //actionBarDrawerToggle
 
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
@@ -211,8 +238,8 @@ public class BaseActivity extends AppCompatActivity {
             topMenu.clear();
 
             for (JsonElement menuObj : menuArray) {
-                JsonObject menuObjEx = menuObj.getAsJsonObject();
-                MenuItem   menuItem  = topMenu.add(menuObjEx.has("title") ? menuObjEx.get("title").getAsString() : "Unknown");
+                final JsonObject menuObjEx = menuObj.getAsJsonObject();
+                MenuItem         menuItem  = topMenu.add(menuObjEx.has("title") ? menuObjEx.get("title").getAsString() : "Unknown");
 
                 if (menuObjEx.has("visibility")) {
                     menuItem.setVisible(Boolean.parseBoolean(menuObjEx.get("visibility").getAsString()));
@@ -234,6 +261,16 @@ public class BaseActivity extends AppCompatActivity {
                     }
                 } else {
                     menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                }
+
+                if (menuObjEx.has("onClick")) {
+                    menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            Base.fireEvent(null, EventType.OnClick, menuObjEx.get("onClick").getAsJsonObject(), BaseActivity.this);
+                            return true;
+                        }
+                    });
                 }
 
                 if (menuObjEx.has("badge") && menuObjEx.has("icon")) {

@@ -23,7 +23,6 @@
                 "notification":".activity.Notification",
                 "appsetting":".activity.AppSetting",
                 "module":".activity.Module"
-                    
             }
         },
         {

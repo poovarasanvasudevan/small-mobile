@@ -2,10 +2,9 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/baseView1">
-
     <android.support.design.widget.AppBarLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="wrap_content"
@@ -26,6 +25,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_below="@+id/appbar"
+            android:background="@android:color/white"
             android:orientation="vertical"
             android:id="@+id/notificationSettingBar"
             android:layout_height="match_parent">
@@ -42,6 +42,7 @@
             <com.poovarasan.mpreferences.MaterialSwitchPreference
                     android:layout_width="match_parent"
                     app:mp_key="product_new_settings"
+                    android:id="@+id/product_new_settings"
                     app:mp_default_value="true"
                     app:mp_title="Show New Product Notification"
                     app:mp_summary="This will Notifies You when new products are updated"
@@ -52,10 +53,33 @@
                     android:layout_width="match_parent"
                     app:mp_key="product_discount_settings"
                     app:mp_default_value="true"
+                    android:id="@+id/product_discount_settings"
                     app:mp_title="Notifiy Discounts"
                     app:mp_summary="This will Notifies You when Product has been discounted"
                     android:layout_height="wrap_content"/>
         </com.poovarasan.mpreferences.MaterialPreferenceCategory>
-    </LinearLayout>
 
+        <View style="@style/Divider"/>
+
+        <com.poovarasan.mpreferences.MaterialPreferenceCategory
+                android:layout_width="match_parent"
+                app:mpc_title="Order Notification"
+                app:mpc_title_color="?colorPrimary"
+                app:cardElevation="0dp"
+                app:cardMaxElevation="0dp"
+                app:cardUseCompatPadding="true"
+                android:layout_height="wrap_content">
+
+            <com.poovarasan.mpreferences.MaterialSwitchPreference
+                    android:layout_width="match_parent"
+                    app:mp_key="order_status_settings"
+                    android:id="@+id/order_status_settings"
+                    app:mp_default_value="true"
+                    app:mp_title="Notify about My Order"
+                    app:mp_summary="This will Notifies You when about your Order Status"
+                    android:layout_height="wrap_content"/>
+
+        </com.poovarasan.mpreferences.MaterialPreferenceCategory>
+
+    </LinearLayout>
 </RelativeLayout>

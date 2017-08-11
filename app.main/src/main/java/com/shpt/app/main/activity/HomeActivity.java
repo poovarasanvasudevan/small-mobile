@@ -24,12 +24,16 @@ public class HomeActivity extends BaseActivity {
 
     private RelativeLayout baseView;
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
         initView();
+
+
 
         Uri uri = Small.getUri(this);
         if (uri != null) {
@@ -42,7 +46,6 @@ public class HomeActivity extends BaseActivity {
 
         //CommunityMaterial.Icon.cmd_grid
         //CommunityMaterial.Icon.cmd_access_point
-
     }
 
     @Override

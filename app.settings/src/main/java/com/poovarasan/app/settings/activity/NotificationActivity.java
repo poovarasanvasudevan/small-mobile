@@ -1,22 +1,30 @@
 package com.poovarasan.app.settings.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.blankj.utilcode.util.SnackbarUtils;
 import com.poovarasan.app.settings.R;
+import com.poovarasan.mpreferences.MaterialSwitchPreference;
 
 public class NotificationActivity extends AppCompatActivity {
 
-    private Toolbar        toolbar;
-    private RelativeLayout baseView1;
-    private AppBarLayout   appbar;
-    private LinearLayout   notificationSettingBar;
+    private Toolbar                  toolbar;
+    private RelativeLayout           baseView1;
+    private AppBarLayout             appbar;
+    private LinearLayout             notificationSettingBar;
+    private MaterialSwitchPreference productNewSettings;
+    private MaterialSwitchPreference productDiscountSettings;
+    private MaterialSwitchPreference orderStatusSettings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,18 @@ public class NotificationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Notification Settings");
 
+
+        orderStatusSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SnackbarUtils
+                        .with(view)
+                        .setMessage(orderStatusSettings.getValue() ? "Order Status Notification Enabled" : "Order Status Notification Disabled")
+                        .setMessageColor(Color.WHITE)
+                     //   .setBgColor(orderStatusSettings.getValue() ? Color.GREEN : Color.RED)
+                        .show();
+            }
+        });
     }
 
     @Override
@@ -38,7 +58,7 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
@@ -57,5 +77,8 @@ public class NotificationActivity extends AppCompatActivity {
         baseView1 = (RelativeLayout) findViewById(R.id.baseView1);
         appbar = (AppBarLayout) findViewById(R.id.appbar);
         notificationSettingBar = (LinearLayout) findViewById(R.id.notificationSettingBar);
+        productNewSettings = (MaterialSwitchPreference) findViewById(R.id.product_new_settings);
+        productDiscountSettings = (MaterialSwitchPreference) findViewById(R.id.product_discount_settings);
+        orderStatusSettings = (MaterialSwitchPreference) findViewById(R.id.order_status_settings);
     }
 }

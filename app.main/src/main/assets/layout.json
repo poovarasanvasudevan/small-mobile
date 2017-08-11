@@ -145,7 +145,7 @@
                                                     {
                                                         "type": "Icon",
                                                         "id": "search",
-                                                        "icon": "cmd_magnify",
+                                                        "icon": "sli_magnifier",
                                                         "layout_width": "44dp",
                                                         "layout_height": "match_parent",
                                                         "iconColor": "#555555",
@@ -165,7 +165,7 @@
                                                     {
                                                         "type": "Icon",
                                                         "id": "scan",
-                                                        "icon": "cmd_barcode",
+                                                        "icon": "cmd_barcode_scan",
                                                         "iconColor": "#555555",
                                                         "size": "10dp",
                                                         "padding": "10dp",
@@ -316,54 +316,51 @@
                         "title": "Notification",
                         "id": "notification",
                         "showaction": "always",
-                        "icon": "cmd_bell",
+                        "icon": "sli_bell",
                         "visibility": "true",
                         "align": "",
-                        "badge": "4",
-                        "onClick": ""
+                        "badge": "4"
                     },
                     {
                         "title": "Wishlist",
                         "id": "wishlist",
                         "showaction": "always",
-                        "icon": "cmd_shopping",
+                        "icon": "sli_handbag",
                         "visibility": "true",
-                        "align": "",
-                        "onClick": ""
+                        "align": ""
                     },
                     {
                         "title": "Shopping Cart",
                         "id": "cart",
                         "showaction": "always",
-                        "icon": "cmd_cart",
+                        "icon": "sli_basket_loaded",
                         "visibility": "true",
-                        "align": "",
-                        "onClick": ""
+                        "align": ""
                     }
                 ],
                 "sidebar": [
                     {
                         "title": "Your Orders",
                         "id": "yourorders",
-                        "icon": "cmd_shopping",
+                        "icon": "lec_bag",
                         "visibility": "true"
                     },
                     {
                         "title": "Your Wishlist",
                         "id": "yourwishlist",
-                        "icon": "cmd_shopping",
+                        "icon": "lec_bag",
                         "visibility": "true"
                     },
                     {
                         "title": "Account Settings",
                         "id": "account",
-                        "icon": "cmd_account_circle",
+                        "icon": "sli_user",
                         "visibility": "true"
                     },
                     {
                         "title": "Notification Settings",
                         "id": "account",
-                        "icon": "cmd_bell",
+                        "icon": "sli_bell",
                         "visibility": "true",
                         "onClick": {
                             "event": [
@@ -380,7 +377,7 @@
                     {
                         "title": "App Settings",
                         "id": "app",
-                        "icon": "cmd_grid",
+                        "icon": "sli_grid",
                         "visibility": "true",
                         "onClick": {
                             "event": [
@@ -397,7 +394,7 @@
                     {
                         "title": "Help",
                         "id": "account",
-                        "icon": "cmd_help",
+                        "icon": "sli_question",
                         "visibility": "true"
                     }
                 ]
@@ -448,7 +445,7 @@
                                         "key": "pnotifiy1|true",
                                         "title": "Notifiy New Product",
                                         "summary": "Notifiy me on New Products",
-                                        "icon": "cmd_bell_ring"
+                                        "icon": "sli_bell"
                                     },
                                     {
                                         "type": "MaterialCheckbox",
@@ -457,7 +454,7 @@
                                         "key": "magazinenotification|true",
                                         "title": "Notify about Magazine",
                                         "summary": "Notify me on Magazine Related News",
-                                        "icon": "cmd_book"
+                                        "icon": "sli_notebook"
                                     }
                                 ]
                             },
@@ -482,7 +479,7 @@
                                         "key": "onotifiy1|true",
                                         "title": "Notify My Order Status",
                                         "summary": "Notifies All Related Activity about Your Orders",
-                                        "icon": "cmd_bell_ring"
+                                        "icon": "sli_bell"
                                     }
                                 ]
                             },
@@ -506,7 +503,7 @@
                                         "layout_height": "wrap_content",
                                         "key": "newsletter|true",
                                         "title": "Subscribe for Newsletter",
-                                        "icon": "cmd_newspaper"
+                                        "icon": "sli_paper_clip"
                                     }
                                 ]
                             }

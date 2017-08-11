@@ -1,6 +1,7 @@
 int drawable et 0x39020000
 int drawable progress_drawable 0x39020001
 int drawable cursor 0x39020002
+int drawable sign 0x39020003
 int anim scale_down 0x39030000
 int anim slide_down 0x39030001
 int anim slide_up 0x39030002
@@ -36,6 +37,7 @@ int string op_image_url 0x3906000e
 int string op_subtext 0x3906000f
 int string op_summarytext 0x39060010
 int string op_titletext 0x39060011
+int string define_font_SimpleLineIcon 0x39060012
 int layout home_shimmer 0x39070000
 int layout pager_item 0x39070001
 int layout bundles_list 0x39070002
@@ -46,3 +48,4 @@ int id card_summary 0x39080003
 int id basePagerView 0x39080004
 int id moduleName 0x39080005
 int id moduleVersion 0x39080006
+int style Divider 0x39090000
