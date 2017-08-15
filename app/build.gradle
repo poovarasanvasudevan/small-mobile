@@ -44,6 +44,8 @@ dependencies {
     compile project(':mpreferences')
 
     compile 'com.koushikdutta.ion:ion:2.+'
+    compile 'com.github.halysongoncalves:pugnotification:1.8.1'
+
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'com.jakewharton:process-phoenix:2.0.0'
     compile 'com.orhanobut:dialogplus:1.11@aar'

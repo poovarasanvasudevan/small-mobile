@@ -1,7 +1,10 @@
 package com.poovarasan.app.settings.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,8 +15,7 @@ import android.widget.LinearLayout;
 import com.blankj.utilcode.util.AppUtils;
 import com.poovarasan.app.settings.R;
 import com.poovarasan.mpreferences.MaterialStandardPreference;
-
-import net.wequick.small.Small;
+import com.shpt.lib.kernel.Base;
 
 public class AppSettingActivity extends AppCompatActivity {
 
@@ -32,13 +34,17 @@ public class AppSettingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(Base.getIcon("sli_arrow_left",20, Color.WHITE));
+
         getSupportActionBar().setTitle("App Settings");
 
         appModules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Small.openUri("settings/module",getApplicationContext());
-               // ActivityCompat.startActivity(getApplicationContext(), new Intent(AppSettingActivity.this, ModuleActivity.class), null);
+               // Small.openUri("settings/module",getApplicationContext());
+                Intent i =new Intent(AppSettingActivity.this,ModuleActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                ActivityCompat.startActivity(getApplicationContext(), i, null);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
