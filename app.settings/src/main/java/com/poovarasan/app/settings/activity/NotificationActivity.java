@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import com.blankj.utilcode.util.SnackbarUtils;
 import com.poovarasan.app.settings.R;
 import com.poovarasan.mpreferences.MaterialSwitchPreference;
+import com.shpt.lib.kernel.Base;
 
 public class NotificationActivity extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class NotificationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(Base.getIcon("sli_arrow_left",20,Color.WHITE));
         getSupportActionBar().setTitle("Notification Settings");
 
 

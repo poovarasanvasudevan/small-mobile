@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -65,6 +66,8 @@ public class ModuleActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(Base.getIcon("sli_arrow_left",20, Color.WHITE));
+
         getSupportActionBar().setTitle("Modules");
 
         List<ModuleDetail> appBundles = Base.getAllModules();
