@@ -50,7 +50,8 @@ dependencies {
     compile "android.arch.lifecycle:runtime:1.0.0-alpha3"
     compile "android.arch.lifecycle:extensions:1.0.0-alpha3"
     annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha3"
-    compile 'com.github.sharish:ShimmerRecyclerView:v1.0.1'
+
+
     compile "com.mikepenz:iconics-core:2.8.9@aar"
     compile 'com.mikepenz:community-material-typeface:1.9.32.2@aar'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'

@@ -1,5 +1,10 @@
 package com.shpt.lib.kernel.activity;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,11 +30,6 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.jayway.jsonpath.JsonPath;
 import com.mikepenz.actionitembadge.library.ActionItemBadge;
 import com.mikepenz.iconics.Iconics;
@@ -46,10 +46,10 @@ import com.shpt.lib.kernel.icon.LineBasic;
 import com.shpt.lib.kernel.icon.LineEcom;
 import com.shpt.lib.kernel.icon.SimpleLineIcon;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 import java.util.Map;
 import java.util.Random;
-
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static android.R.attr.type;
 
@@ -413,11 +413,6 @@ public class BaseActivity extends AppCompatActivity {
         if (toolbar != null) {
             toolbar.getContext().setTheme(R.style.ThemeOverlay_AppCompat_Dark_ActionBar);
             setSupportActionBar(toolbar);
-        }
-
-        ShimmerRecyclerView shimmerRecyclerView = (ShimmerRecyclerView) find("shimmer");
-        if (shimmerRecyclerView != null) {
-            shimmerRecyclerView.showShimmerAdapter();
         }
     }
 }

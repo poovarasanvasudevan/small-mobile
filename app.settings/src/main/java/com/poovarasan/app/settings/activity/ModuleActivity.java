@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.burakeregar.easiestgenericrecycleradapter.base.GenericAdapterBuilder;
@@ -66,7 +67,7 @@ public class ModuleActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(Base.getIcon("sli_arrow_left",20, Color.WHITE));
+        getSupportActionBar().setHomeAsUpIndicator(Base.getIcon("sli_arrow_left", 20, Color.WHITE));
 
         getSupportActionBar().setTitle("Modules");
 
@@ -168,11 +169,11 @@ public class ModuleActivity extends AppCompatActivity {
         private Context        mContext;
         private MaterialDialog mProgressDlg;
 
-        public UpgradeManager(Context context) {
+        UpgradeManager(Context context) {
             mContext = context;
         }
 
-        public void checkUpgrade() {
+        void checkUpgrade() {
 
             mProgressDlg = new MaterialDialog.Builder(mContext)
                     .content("Checking for updates...")
@@ -193,6 +194,11 @@ public class ModuleActivity extends AppCompatActivity {
 
                                     if (succeed) {
 
+                                        AppUtils.cleanAppData(
+                                                mContext.getDataDir(),
+                                                mContext.getCacheDir()
+                                        );
+
                                         MaterialDialog dialog = new MaterialDialog.Builder(mContext)
                                                 .title("Success")
                                                 .content("Upgrade Success! Restart your application to see upgrade changes.")
@@ -200,6 +206,7 @@ public class ModuleActivity extends AppCompatActivity {
                                                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                                                     @Override
                                                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
                                                         dialog.dismiss();
                                                         ProcessPhoenix.triggerRebirth(mContext);
                                                     }
