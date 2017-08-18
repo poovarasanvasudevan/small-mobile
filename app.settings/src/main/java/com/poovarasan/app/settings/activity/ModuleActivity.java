@@ -168,6 +168,7 @@ public class ModuleActivity extends AppCompatActivity {
 
         private Context        mContext;
         private MaterialDialog mProgressDlg;
+        private MaterialDialog.Builder mbuilder;
 
         UpgradeManager(Context context) {
             mContext = context;
@@ -175,12 +176,11 @@ public class ModuleActivity extends AppCompatActivity {
 
         void checkUpgrade() {
 
-            mProgressDlg = new MaterialDialog.Builder(mContext)
+            mbuilder = new MaterialDialog.Builder(mContext)
                     .content("Checking for updates...")
                     .progress(true, 0)
-                    .canceledOnTouchOutside(false)
-                    .progressIndeterminateStyle(false)
-                    .show();
+                    .canceledOnTouchOutside(false);
+            mProgressDlg  = mbuilder.show();
             requestUpgradeInfo(Small.getBundleVersions(), new OnResponseListener() {
                 @Override
                 public void onResponse(UpgradeInfo info) {
@@ -206,7 +206,6 @@ public class ModuleActivity extends AppCompatActivity {
                                                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                                                     @Override
                                                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
                                                         dialog.dismiss();
                                                         ProcessPhoenix.triggerRebirth(mContext);
                                                     }
@@ -249,6 +248,7 @@ public class ModuleActivity extends AppCompatActivity {
                                     int              N        = updates.size();
                                     List<UpdateInfo> infos    = new ArrayList<UpdateInfo>(N);
 
+                                    mProgressDlg.setContent("Getting the Update Packages");
                                     for (int i = 0; i < N; i++) {
                                         JsonObject o       = updates.get(i).getAsJsonObject();
                                         int        version = o.has("version") ? o.get("version").getAsInt() : 0;
@@ -314,7 +314,7 @@ public class ModuleActivity extends AppCompatActivity {
                 }
                 // Download bundles
                 List<UpdateInfo> updates = info.updates;
-                for (UpdateInfo u : updates) {
+                for (final UpdateInfo u : updates) {
                     final net.wequick.small.Bundle bundle = Small.getBundle(u.packageName);
                     File                           file   = bundle.getPatchFile();
 
@@ -325,6 +325,7 @@ public class ModuleActivity extends AppCompatActivity {
                             .setCallback(new FutureCallback<File>() {
                                 @Override
                                 public void onCompleted(Exception e, File result) {
+                                    mProgressDlg.setContent("Upgrading " + u.packageName);
                                     bundle.upgrade();
                                 }
                             });

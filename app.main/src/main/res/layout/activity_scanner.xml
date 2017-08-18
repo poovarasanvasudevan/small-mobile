@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/baseViewScanner">
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_above="@+id/scanLayout"
+                    android:layout_height="match_parent">
+
+        <SurfaceView android:layout_width="match_parent"
+                     android:id="@+id/scannerView"
+                     android:layout_height="match_parent"/>
+
+        <View android:layout_width="@dimen/_180sdp"
+              android:layout_centerHorizontal="true"
+              android:layout_centerVertical="true"
+              android:background="@drawable/scanner"
+              android:layout_height="@dimen/_80sdp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="@string/scanning_txtt"
+                android:id="@+id/resultText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:id="@+id/scanLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/_190sdp">
+
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/scan_for_product_code"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_height="wrap_content"/>
+
+            <android.support.design.widget.FloatingActionButton
+                    android:layout_width="@dimen/_80sdp"
+                    app:fabSize="normal"
+                    android:id="@+id/fabScan"
+                    app:borderWidth="0dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:tint="@android:color/white"
+                    app:elevation="2dp"
+                    app:rippleColor="@color/colorPrimaryDark"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/_80sdp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

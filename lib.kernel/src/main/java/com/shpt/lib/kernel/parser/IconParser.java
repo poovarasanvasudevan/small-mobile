@@ -4,14 +4,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import android.content.res.ColorStateList;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.mikepenz.iconics.IconicsDrawable;
+import com.poovarasan.blade.EventType;
 import com.poovarasan.blade.parser.Attributes;
 import com.poovarasan.blade.parser.Parser;
 import com.poovarasan.blade.parser.WrappableParser;
 import com.poovarasan.blade.processor.ColorResourceProcessor;
 import com.poovarasan.blade.processor.DimensionAttributeProcessor;
+import com.poovarasan.blade.processor.EventProcessor;
 import com.poovarasan.blade.processor.StringAttributeProcessor;
 import com.poovarasan.blade.toolbox.Styles;
 import com.poovarasan.blade.view.BladeView;
@@ -52,6 +55,18 @@ public class IconParser extends WrappableParser<Icon> {
             @Override
             public void setDimension(float dimension, Icon view, String key, JsonElement value) {
                 view.getIcon().sizeDp(Math.round(dimension));
+            }
+        });
+
+        addHandler(new Attributes.Attribute("onClick"), new EventProcessor<Icon>() {
+            @Override
+            public void setOnEventListener(Icon view, final JsonElement attributeValue) {
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fireEvent((BladeView) view, EventType.OnClick,attributeValue);
+                    }
+                });
             }
         });
 

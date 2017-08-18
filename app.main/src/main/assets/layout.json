@@ -171,7 +171,19 @@
                                                         "padding": "10dp",
                                                         "layout_width": "44dp",
                                                         "layout_height": "match_parent",
-                                                        "layout_alignParentRight": "true"
+                                                        "layout_alignParentRight": "true",
+                                                        "onClick":{
+                                                            "event": [
+                                                                {
+                                                                    "event": "com.shpt.lib.kernel.event.SmallGoToEvent",
+                                                                    "activity": "main/scanner",
+                                                                    "extras": {
+                                                                        "from": "MainActivity",
+                                                                        "view": "home"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
                                                     }
                                                 ]
                                             }

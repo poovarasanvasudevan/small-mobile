@@ -13,7 +13,8 @@
             "uri": "main",
             "pkg": "com.shpt.app.main",
             "rules":{
-                "home":".activity.Home"
+                "home":".activity.Home",
+                "scanner":".activity.Scanner"
             }
         },
         {
